@@ -1,10 +1,8 @@
 /* global fetch */
 
-
-
 function handleClick(){
     const input = document.getElementById("input").value;
-    console.log(input);
+   // console.log(input);
     
     const url = "https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search="+ input +"&format=json"
     
@@ -13,25 +11,29 @@ function handleClick(){
         return response.json();
       }).then(function(response){
         //console.log(url);
-        console.log("response",response);
-        displayResults(response[3]);
+        //console.log("response",response);
+        //get the title,snippet and url
+        displayResults(response[1],response[2],response[3]);
       })
   }
-  
-  
-  // var myResults = ["Nelson Mandela", "Death of Nelson Mandela", "Presidency of Nelson Mandela"];
-  
-  function displayResults(myResults){
-    //console.log("myResults", myResults);
-    var list = myResults.map(function(item){
-        console.log(item);
-        //return item;
-      //return "<li>"+  item  + "</li>"
-      return "<li>"+"<a href=\"" + item + "\">"+item+""+ "</li>";
-    })
-    list = list.join("\n");
-    console.log("list",list);
+
+function displayResults(title,snip,links) {
+  document.getElementById("res").innerHTML = " ";
+  for (let index = 0; index < title.length; index++) {
+    var titulo = title[index];
+    var snippet = snip[index];
+    var link = links[index];
+    console.log(titulo+"\n"+snippet+"\n"+link);
+    //create the div element and give a ID
+   var divResult = document.createElement("div");
+   divResult.id = "resultdiv";
+   //add the html to the inner div
+   divResult.innerHTML = "<h4>"+titulo+"</h4>" + "</br>"+snippet+ "</br>"+"<a href=\""+link+"\">"+link;
+    //add the innerdiv to the result div  
+    var res = document.getElementById("res");
+    res.append(divResult);
+
     
-    document.getElementById("res").innerHTML=list;
-   //document.getElementById("results").setAttribute("href", list);
   }
+  
+}//end function displayResults
