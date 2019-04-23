@@ -12,7 +12,8 @@ function handleClick(){
       .then(function(response){
         return response.json();
       }).then(function(response){
-       // console.log("response",response[3]);
+        //console.log(url);
+        console.log("response",response);
         displayResults(response[3]);
       })
   }
@@ -31,6 +32,6 @@ function handleClick(){
     list = list.join("\n");
     console.log("list",list);
     
-    document.getElementById("results").innerHTML=list;
+    document.getElementById("res").innerHTML=list;
    //document.getElementById("results").setAttribute("href", list);
   }
