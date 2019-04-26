@@ -2,9 +2,12 @@
 
 function handleClick() {
     input = document.getElementById("input").value;
-    var url = 'https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=' + input + '&format=json';
-    axios.get(url).then(function(response) {
-        displayResults(response.data);
+   // var url = 'https://cors-anywhere.herokuapp.com/https://en.wikipedia.org/w/api.php?action=opensearch&search=' + input + '&format=json';
+   var url = 'https://cors-anywhere.herokuapp.com/https://josemarte70-jmarte70.c9users.io/?letter='+ input;
+
+   axios.get(url).then(function(response) {
+       console.log(response);
+        //displayResults(response.data);
     });
 }//end of unction handleClick
 
